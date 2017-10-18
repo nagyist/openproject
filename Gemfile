@@ -196,7 +196,7 @@ group :test do
   # brings back testing for 'assigns' and 'assert_template' extracted in rails 5
   gem 'rails-controller-testing', '~> 1.0.2'
 
-  gem 'aws-sdk', '~> 2.10.1'
+  gem 'aws-sdk', '~> 3.0.1'
   gem 'capybara', '~> 2.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
   gem 'fuubar', '~> 2.2.0'
