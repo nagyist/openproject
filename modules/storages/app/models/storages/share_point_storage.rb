@@ -30,6 +30,8 @@
 
 module Storages
   class SharePointStorage < Storage
+    IDENTIFIER_SEPARATOR = "||"
+
     PROVIDER_FIELDS_DEFAULTS = {
       automatically_managed: false,
       automatic_management_enabled: false
@@ -37,11 +39,13 @@ module Storages
 
     store_attribute :provider_fields, :tenant_id, :string
 
-    # For now SharePoint is visible only for development and tests.
+    # For now SharePoint is visible only in tests.
     # This is to prevent it from being shown in the UI, as it is not ready yet.
     def self.visible?
       Rails.env.local?
     end
+
+    store_attribute :provider_fields, :tenant_id, :string
 
     def self.short_provider_name = :share_point
     def audience = nil
@@ -56,6 +60,14 @@ module Storages
       else
         %w[inactive manual]
       end
+    end
+
+    def configuration_checks
+      { all: true }
+    end
+
+    def uri
+      @uri ||= URI("https://graph.microsoft.com").normalize
     end
 
     def oauth_configuration = Adapters::Providers::SharePoint::OAuthConfiguration.new(self)

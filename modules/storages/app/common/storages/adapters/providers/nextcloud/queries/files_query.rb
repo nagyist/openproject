@@ -106,14 +106,14 @@ module Storages
                 last = list.last
                 prefix = last.nil? || last.location[-1] != "/" ? "/" : ""
                 location = "#{last&.location}#{prefix}#{item}"
-                list.append(forge_ancestor(location))
+                list.append(forge_ancestor(CGI.unescape(location)))
               end
             end
 
             # The ancestors are simply derived objects from the parents location string. Until we have real information
             # from the nextcloud API about the path to the parent, we need to derive name, location and forge an ID.
             def forge_ancestor(location)
-              Results::StorageFile.new(id: Digest::SHA256.hexdigest(location), name: name(location), location:)
+              Results::StorageFileAncestor.new(name: name(location), location:)
             end
 
             def name(location)

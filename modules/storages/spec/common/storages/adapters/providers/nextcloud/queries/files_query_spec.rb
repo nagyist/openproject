@@ -55,7 +55,7 @@ module Storages
               let(:files_result) do
                 # FIXME: nextcloud files query currently does not correctly returns modifier and creation date.
                 Results::StorageFileCollection.new(
-                  [
+                  files: [
                     Results::StorageFile.new(id: "555",
                                              name: "Folder",
                                              size: 232167,
@@ -87,17 +87,17 @@ module Storages
                                              location: "/%c3%9cml%c3%a6%c3%bbts",
                                              permissions: %i[readable writeable])
                   ],
-                  Results::StorageFile.new(id: "385",
-                                           name: "Root",
-                                           size: 252777,
-                                           mime_type: "application/x-op-directory",
-                                           created_at: nil,
-                                           last_modified_at: Time.zone.parse("2024-08-09T11:53:42Z"),
-                                           created_by_name: "Mara Jade",
-                                           last_modified_by_name: nil,
-                                           location: "/",
-                                           permissions: %i[readable writeable]),
-                  []
+                  parent: Results::StorageFile.new(id: "385",
+                                                   name: "Root",
+                                                   size: 252777,
+                                                   mime_type: "application/x-op-directory",
+                                                   created_at: nil,
+                                                   last_modified_at: Time.zone.parse("2024-08-09T11:53:42Z"),
+                                                   created_by_name: "Mara Jade",
+                                                   last_modified_by_name: nil,
+                                                   location: "/",
+                                                   permissions: %i[readable writeable]),
+                  ancestors: []
                 )
               end
 
@@ -108,7 +108,7 @@ module Storages
               let(:folder) { "/Folder/Nested Folder" }
               let(:files_result) do
                 Results::StorageFileCollection.new(
-                  [
+                  files: [
                     Results::StorageFile.new(id: "603",
                                              name: "giphy.gif",
                                              size: 184726,
@@ -140,23 +140,19 @@ module Storages
                                              location: "/Folder/Nested%20Folder/todo.txt",
                                              permissions: %i[readable writeable])
                   ],
-                  Results::StorageFile.new(id: "601",
-                                           name: "Nested Folder",
-                                           size: 231045,
-                                           mime_type: "application/x-op-directory",
-                                           created_at: nil,
-                                           last_modified_at: Time.zone.parse("2024-08-09T11:53:42Z"),
-                                           created_by_name: "Mara Jade",
-                                           last_modified_by_name: nil,
-                                           location: "/Folder/Nested%20Folder",
-                                           permissions: %i[readable writeable]),
-                  [
-                    Results::StorageFile.new(id: "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
-                                             name: "Root",
-                                             location: "/"),
-                    Results::StorageFile.new(id: "0da2f1cf70005eaeb08333802726c2928503d975e4a70cbdd1a28313cded20ae",
-                                             name: "Folder",
-                                             location: "/Folder")
+                  parent: Results::StorageFile.new(id: "601",
+                                                   name: "Nested Folder",
+                                                   size: 231045,
+                                                   mime_type: "application/x-op-directory",
+                                                   created_at: nil,
+                                                   last_modified_at: Time.zone.parse("2024-08-09T11:53:42Z"),
+                                                   created_by_name: "Mara Jade",
+                                                   last_modified_by_name: nil,
+                                                   location: "/Folder/Nested%20Folder",
+                                                   permissions: %i[readable writeable]),
+                  ancestors: [
+                    Results::StorageFileAncestor.new(name: "Root", location: "/"),
+                    Results::StorageFileAncestor.new(name: "Folder", location: "/Folder")
                   ]
                 )
               end
@@ -168,24 +164,20 @@ module Storages
               let(:folder) { "/Folder with spaces/very empty folder" }
               let(:files_result) do
                 Results::StorageFileCollection.new(
-                  [],
-                  Results::StorageFile.new(id: "571",
-                                           name: "very empty folder",
-                                           size: 0,
-                                           mime_type: "application/x-op-directory",
-                                           created_at: nil,
-                                           last_modified_at: Time.zone.parse("2024-08-09T11:52:04Z"),
-                                           created_by_name: "Mara Jade",
-                                           last_modified_by_name: nil,
-                                           location: "/Folder%20with%20spaces/very%20empty%20folder",
-                                           permissions: %i[readable writeable]),
-                  [
-                    Results::StorageFile.new(id: "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
-                                             name: "Root",
-                                             location: "/"),
-                    Results::StorageFile.new(id: "c8776f1f6dd36c023c6615d39f01a71d68dd1707b232115b7a4f58bc6da94e2e",
-                                             name: "Folder with spaces",
-                                             location: "/Folder%20with%20spaces")
+                  files: [],
+                  parent: Results::StorageFile.new(id: "571",
+                                                   name: "very empty folder",
+                                                   size: 0,
+                                                   mime_type: "application/x-op-directory",
+                                                   created_at: nil,
+                                                   last_modified_at: Time.zone.parse("2024-08-09T11:52:04Z"),
+                                                   created_by_name: "Mara Jade",
+                                                   last_modified_by_name: nil,
+                                                   location: "/Folder%20with%20spaces/very%20empty%20folder",
+                                                   permissions: %i[readable writeable]),
+                  ancestors: [
+                    Results::StorageFileAncestor.new(name: "Root", location: "/"),
+                    Results::StorageFileAncestor.new(name: "Folder with spaces", location: "/Folder with spaces")
                   ]
                 )
               end
@@ -197,7 +189,7 @@ module Storages
               let(:folder) { "/Ümlæûts" }
               let(:files_result) do
                 Results::StorageFileCollection.new(
-                  [
+                  files: [
                     Results::StorageFile.new(id: "564",
                                              name: "Anrüchiges deutsches Dokument.docx",
                                              size: 19720,
@@ -219,20 +211,18 @@ module Storages
                                              location: "/%c3%9cml%c3%a6%c3%bbts/data",
                                              permissions: %i[readable writeable])
                   ],
-                  Results::StorageFile.new(id: "562",
-                                           name: "Ümlæûts",
-                                           size: 19720,
-                                           mime_type: "application/x-op-directory",
-                                           created_at: nil,
-                                           last_modified_at: Time.zone.parse("2024-08-09T11:51:48Z"),
-                                           created_by_name: "Mara Jade",
-                                           last_modified_by_name: nil,
-                                           location: "/%c3%9cml%c3%a6%c3%bbts",
-                                           permissions: %i[readable writeable]),
-                  [
-                    Results::StorageFile.new(id: "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
-                                             name: "Root",
-                                             location: "/")
+                  parent: Results::StorageFile.new(id: "562",
+                                                   name: "Ümlæûts",
+                                                   size: 19720,
+                                                   mime_type: "application/x-op-directory",
+                                                   created_at: nil,
+                                                   last_modified_at: Time.zone.parse("2024-08-09T11:51:48Z"),
+                                                   created_by_name: "Mara Jade",
+                                                   last_modified_by_name: nil,
+                                                   location: "/%c3%9cml%c3%a6%c3%bbts",
+                                                   permissions: %i[readable writeable]),
+                  ancestors: [
+                    Results::StorageFileAncestor.new(name: "Root", location: "/")
                   ]
                 )
               end

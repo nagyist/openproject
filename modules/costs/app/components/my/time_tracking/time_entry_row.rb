@@ -77,10 +77,14 @@ module My
       end
 
       def subject
-        render(Primer::Beta::Link.new(href: project_work_package_path(time_entry.project, time_entry.work_package),
-                                      underline: true)) do
-          "##{time_entry.work_package.id}"
-        end + " - #{time_entry.work_package.subject}"
+        render(Primer::OpenProject::FlexLayout.new) do |flex|
+          flex.with_row do
+            render(WorkPackages::InfoLineComponent.new(work_package: time_entry.work_package))
+          end
+          flex.with_row do
+            render(Primer::Beta::Text.new(font_weight: :semibold)) { time_entry.work_package.subject }
+          end
+        end
       end
 
       def project

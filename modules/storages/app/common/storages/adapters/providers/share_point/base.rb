@@ -49,7 +49,24 @@ module Storages
             @storage = storage
           end
 
+          def base_uri = @storage.uri
+
           private
+
+          def site_name
+            host_uri.path&.split("/")&.last
+          end
+
+          def host_uri
+            URI(@storage.host)
+          end
+
+          def split_identifier(location)
+            drive_id, item_id = location.to_s.split(SharePointStorage::IDENTIFIER_SEPARATOR)
+            { drive_id:, location: Peripherals::ParentFolder.new(item_id || "/") }
+          end
+
+          def request_uri = raise Errors::SubclassResponsibility
 
           # @param error [Results::Error]
           # @return [void]

@@ -62,6 +62,11 @@ module Storages
           namespace("validators") do
             register(:connection, Validators::ConnectionValidator)
           end
+
+          namespace("queries") do
+            register(:files, Queries::FilesQuery)
+            register(:user, OneDrive::Queries::UserQuery)
+          end
         end
       end
     end

@@ -35,7 +35,7 @@ module Storages
         params do
           required(:files).array(AdapterTypes::StorageFileInstance)
           required(:parent).filled(AdapterTypes::StorageFileInstance)
-          required(:ancestors).array(AdapterTypes::StorageFileInstance)
+          required(:ancestors).array(AdapterTypes::FileAncestorInstance)
         end
       end
     end

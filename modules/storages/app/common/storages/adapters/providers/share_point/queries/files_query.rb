@@ -29,32 +29,29 @@
 #++
 
 module Storages
-  class StorageFilesService < BaseService
-    def self.call(storage:, user:, folder:)
-      new.call(storage:, user:, folder:)
-    end
+  module Adapters
+    module Providers
+      module SharePoint
+        module Queries
+          class FilesQuery < Base
+            def call(auth_strategy:, input_data:)
+              Authentication[auth_strategy].call(storage: @storage) do |http|
+                files_request(input_data.folder, http)
+              end
+            end
 
-    def call(user:, storage:, folder:)
-      with_tagged_logger do
-        auth_strategy = strategy(storage, user)
+            private
 
-        info "Requesting all the files under folder #{folder} for #{storage.name}"
-
-        input_data = Adapters::Input::Files.build(folder:).value_or { return add_validation_error(it) }
-
-        files = Adapters::Registry
-                  .resolve("#{storage}.queries.files").call(storage:, auth_strategy:, input_data:)
-                  .value_or { return add_error(:base, it, options: { storage_name: storage.name, folder: }) }
-
-        @result.result = files
-        @result
+            def files_request(folder, http)
+              if folder.root?
+                Internal::ListsQuery.call(storage: @storage, http:)
+              else
+                Internal::ChildrenQuery.call(storage: @storage, http:, **split_identifier(folder))
+              end
+            end
+          end
+        end
       end
-    end
-
-    private
-
-    def strategy(storage, user)
-      Adapters::Registry.resolve("#{storage}.authentication.user_bound").call(user, storage)
     end
   end
 end

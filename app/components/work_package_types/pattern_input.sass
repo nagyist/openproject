@@ -4,6 +4,11 @@
     overflow: hidden
     height: var(--control-medium-size)
 
+    .-browser-firefox &
+      // Must be set to prevent Firefox from displaying the caret in incorrect places.
+      // See https://bugzilla.mozilla.org/show_bug.cgi?id=904846
+      white-space: pre-wrap
+
     &:focus,
     &:focus-visible
       border-color: var(--focus-outlineColor) !important

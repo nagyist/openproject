@@ -36,6 +36,7 @@ module Storages
       # We need to move the definition of ParentFolder to mean something like Folder
       Location = AdapterTypes.Constructor(Peripherals::ParentFolder)
       StorageFileInstance = AdapterTypes.Instance(Results::StorageFile)
+      FileAncestorInstance = AdapterTypes.Instance(Results::StorageFileAncestor)
       SemanticVersionType = AdapterTypes.Constructor(SemanticVersion, SemanticVersion.method(:parse))
       HTTPVerb = AdapterTypes::Nominal::Symbol.constrained(included_in: %i(post put))
     end
