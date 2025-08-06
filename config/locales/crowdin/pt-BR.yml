@@ -685,6 +685,7 @@ pt-BR:
     dark: "Escuro"
     light: "Claro"
     light_high_contrast: "Contraste alto claro"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Atualmente, não há nenhum tipo.

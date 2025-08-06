@@ -686,6 +686,7 @@ fr:
     dark: "Sombre"
     light: "Clair"
     light_high_contrast: "Clair avec contraste élevé"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Il n'y a actuellement aucun type.

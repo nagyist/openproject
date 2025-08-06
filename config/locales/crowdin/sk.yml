@@ -702,6 +702,7 @@ sk:
     dark: "Dark"
     light: "Light"
     light_high_contrast: "Light high contrast"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Momentálne neexistujú žiadne typy.

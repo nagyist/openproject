@@ -679,6 +679,7 @@ ms:
     dark: "Gelap"
     light: "Terang"
     light_high_contrast: "Kontras tinggi yang terang"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Tiada jenis buat masa ini.

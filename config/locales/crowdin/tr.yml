@@ -687,6 +687,7 @@ tr:
     dark: "Koyu"
     light: "Açık"
     light_high_contrast: "Yüksek kontrastlı açık"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Şu anda hiç tip yok.

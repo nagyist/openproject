@@ -392,7 +392,7 @@ de:
         application_link_text: SharePoint-Seite
         integration: SharePoint Administration / OpenProject
         oauth_configuration: Kopieren Sie die Werte der gewünschten Anwendung im %{application_link_text}.
-        provider_configuration: Bitte stellen Sie sicher, dass Sie Administrationsrechte in Ihrer SharePoint-Instanz haben und die OpenProject-Integrations-Applikation vor dem Setup installiert wurde.
+        provider_configuration: Please make sure you have administration privileges in the %{application_link_text} or contact your Microsoft administrator before doing the setup. In the portal, you also need to register an Azure application or use an existing one for authentication.
       type: 'Bitte stellen Sie sicher, dass Sie Administrationsrechte in Ihrer Nextcloud-Instanz haben und die folgende Anwendung vor dem Setup installiert wurde:'
       type_link_text: "„OpenProject Integration“"
     label_active: Aktiv

@@ -681,6 +681,7 @@ ko:
     dark: "다크"
     light: "라이트"
     light_high_contrast: "라이트 하이 콘트라스트"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: 타입이 없습니다.

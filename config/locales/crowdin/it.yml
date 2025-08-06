@@ -685,6 +685,7 @@ it:
     dark: "Scuro"
     light: "Chiaro"
     light_high_contrast: "Chiaro ad alto contrasto"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Al momento non esistono tipi.

@@ -390,7 +390,7 @@ zh-TW:
         application_link_text: SharePoint 網站
         integration: SharePoint 管理 / OpenProject
         oauth_configuration: 從 %{application_link_text}中的所需應用程式複製這些值。
-        provider_configuration: 請先確保您在 SharePoint 實例中擁有管理員權限，並已安裝 OpenProject 的整合應用程式，才能進行設定。
+        provider_configuration: 請確保您在%{application_link_text} 具有管理權限，或在進行設置之前與您的 Microsoft 管理員聯繫。在門戶中，您還需要註冊一個 Azure 應用程序或使用現有的應用程序進行身份驗證。
       type: '請確保您在 Nextcloud 實例中具有管理權限，並在進行設置之前安裝了以下應用程序：'
       type_link_text: "“整合 OpenProject”"
     label_active: 啟用

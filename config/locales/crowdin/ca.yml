@@ -685,6 +685,7 @@ ca:
     dark: "Dark"
     light: "Clar"
     light_high_contrast: "Clar alt contrast"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Actualment no hi ha cap tipus.

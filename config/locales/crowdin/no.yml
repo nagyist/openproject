@@ -687,6 +687,7 @@
     dark: "Mørk"
     light: "Lyst"
     light_high_contrast: "Lys høy kontrast"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Det finnes for øyeblikket ingen typer.

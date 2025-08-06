@@ -696,6 +696,7 @@ uk:
     dark: "Темна"
     light: "Світла"
     light_high_contrast: "Світла, високий контраст"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Наразі немає типів.

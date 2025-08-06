@@ -700,6 +700,7 @@ ru:
     dark: "Тёмная"
     light: "Светлая"
     light_high_contrast: "Светлый высокий контраст"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: В данный момент типы отсутствуют.
@@ -2164,8 +2165,8 @@ ru:
         other: "%{count} секунд"
     units:
       minute_abbreviated:
-        one: "мин"
-        few: "минута"
+        one: "минута"
+        few: "минуты"
         many: "минут"
         other: "мин"
       hour:

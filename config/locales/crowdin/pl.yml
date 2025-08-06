@@ -699,6 +699,7 @@ pl:
     dark: "Ciemny"
     light: "Jasny"
     light_high_contrast: "Jasny, wysoki kontrast"
+    sync_with_os: "Automatic (match OS colour mode)"
   types:
     index:
       no_results_title_text: Nie ma jeszcze żadnych typów.
