@@ -1,4 +1,4 @@
-# frozen_string_literal:true
+# frozen_string_literal: true
 
 #-- copyright
 # OpenProject is an open source project management software.
@@ -28,38 +28,35 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Storages
-  class OpenStorageLinks
-    class << self
-      include OpenProject::StaticRouting::UrlHelpers
+module API
+  module V3
+    module Projects
+      module Schemas
+        class ProjectCustomFieldSectionRepresenter < ::API::Decorators::Single
+          property :id,
+                   exec_context: :decorator
 
-      def static_link(storage)
-        api_static_link = ::API::V3::Utilities::PathHelper::ApiV3Path.storage_open(storage.id)
+          property :name,
+                   exec_context: :decorator
 
-        case storage
-        when NextcloudStorage
-          api_static_link
-        when OneDriveStorage, SharepointStorage
-          raise Errors::ConfigurationError, "No OAuth credential information configured." if storage.oauth_client.nil?
+          property :attributes,
+                   exec_context: :decorator
 
-          oauth_clients_ensure_connection_url(
-            oauth_client_id: storage.oauth_client.client_id,
-            storage_id: storage.id,
-            destination_url: api_static_link
-          )
-        else
-          raise ArgumentError, "Cannot generate static open link for storage provider type: #{storage.provider_type}"
-        end
-      end
+          def _type
+            "ProjectFormCustomFieldSection"
+          end
 
-      def can_generate_static_link?(storage)
-        case storage
-        when NextcloudStorage
-          true
-        when OneDriveStorage, SharepointStorage
-          storage.oauth_client&.persisted?
-        else
-          false
+          delegate :id, :name, to: :represented
+
+          def attributes
+            represented.custom_fields.map do |cf|
+              convert_property(cf.attribute_name)
+            end
+          end
+
+          def convert_property(attribute_name)
+            ::API::Utilities::PropertyNameConverter.from_ar_name(attribute_name)
+          end
         end
       end
     end
