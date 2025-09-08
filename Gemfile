@@ -64,7 +64,7 @@ gem "scimitar", "~> 2.12"
 gem "acts_as_list", "~> 1.2.0"
 gem "acts_as_tree", "~> 2.9.0"
 gem "awesome_nested_set", "~> 3.8.0"
-gem "closure_tree", "~> 9.0.0"
+gem "closure_tree", "~> 9.1.1"
 gem "rubytree", "~> 2.1.0"
 
 gem "addressable", "~> 2.8.0"
@@ -392,7 +392,7 @@ gem "disposable", "~> 0.6.2"
 gem "dentaku", "~> 3.5", git: "https://github.com/rubysolo/dentaku", ref: "f17d427b63ef7e9ed8f914b5cb1d0645a37f9ebb"
 
 group :postgres do
-  gem "pg", "~> 1.5.0"
+  gem "pg", "~> 1.6.2"
 end
 
 # Support application loading when no database exists yet.
